@@ -1,0 +1,116 @@
+Archeology Brush:090
+Arrow Left:091
+Arrow Return:092
+Arrow Right:093
+Checkpoint:094
+Coin:095
+Crate:096
+Gift:097
+Inventory Fill:115
+Key:098
+Paint Brush:099
+Palette:100
+Ruby Large:101
+Ruby Medium:102
+Ruby Small:103
+Rugged Axe:104
+Rugged Hoe:105
+Rugged Pickaxe:106
+Rugged Shovel:107
+Rugged Sword:108
+Sapphire Large:109
+Sapphire Medium:110
+Sapphire Small:111
+Topaz Large:112
+Topaz Medium:113
+Topaz Small:114
+Arcane Essence:000
+Clay Blend:001
+Cobalt Axe:002
+Cobalt Hoe:003
+Cobalt Ingot:004
+Cobalt Ore:005
+Cobalt Pickaxe:006
+Cobalt Plating:007
+Cobalt Shovel:008
+Cobalt Sword:009
+Earthen Boots:010
+Earthen Chestplate:011
+Earthen Core:012
+Earthen Greatsword:013
+Earthen Hammer:014
+Earthen Helmet:015
+Earthen Leggings:016
+Earthen Module:017
+Earthen Scimitar:018
+Fire Essence:019
+Fire Manastone:020
+Forest Boots:021
+Forest Chestplate:022
+Forest Essence:023
+Forest Helmet:024
+Forest Leggings:025
+Greater Manastone:026
+Heavy Plating:027
+Infected Heart:028
+Infernal Staff:029
+Leather Plating:030
+Lesser Manastone:031
+Manastone:032
+Manastone Staff:033
+Mithril:034
+Mithril Boots:035
+Mithril Chestplate:036
+Mithril Fragment:037
+Mithril Helmet:038
+Mithril Leggings:039
+Mithril Plating:040
+Mithril Shard:041
+Mithril Sword:042
+Mossy Boots:043
+Mossy Chestplate:044
+Mossy Helmet:045
+Mossy Leggings:046
+Platnium Axe:047
+Platnium Hoe:048
+Platnium Ingot:049
+Platnium Ore:050
+Platnium Pickaxe:051
+Platnium Plating:052
+Platnium Shovel:053
+Platnium Sword:054
+Prismite:055
+Prismite Axe:056
+Prismite Hoe:057
+Prismite Pickaxe:058
+Prismite Scythe:059
+Prismite Shovel:060
+Prismite Staff:061
+Prismite Sword:062
+Pure Mana:063
+Reinforced Clay:064
+Reinforced Plating:065
+Scorched Hide:066
+Silver Axe:067
+Silver Hoe:068
+Silver Ingot:069
+Silver Ore:070
+Silver Pickaxe:071
+Silver Plating:072
+Silver Shovel:073
+Silver Sword:074
+Skeletal Blade:075
+Skeletal Greatsword:076
+Slime On A Stick:077
+Wind Essence:078
+Wind Manastone:079
+Withered Blade:080
+Withered Bone:081
+Withered Boots:082
+Withered Chestplate:083
+Withered Helmet:084
+Withered Leggings:085
+Wtihered Plate:086
+Woven Arcane:087
+Woven Fire:088
+Woven Wind:089
