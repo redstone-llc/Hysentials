@@ -106,11 +106,11 @@ register("guiMouseClick", (x, y, button, gui, event) => {
             slot = guiChest.getSlotUnderMouse().field_75222_d
         } catch (e) {
             if (e instanceof TypeError) {
-                console.log("TypeError found in guiMouseClick event, trying backup method.")
+                // console.log("TypeError found in guiMouseClick event, trying backup method.") 
                 try {
                     slot = Client.currentGui.get().field_147005_v
                 } catch (e) {
-                    console.log("Backup method failed.")
+                    // console.log("Backup method failed.")
                     slot = null
                 }
             }
