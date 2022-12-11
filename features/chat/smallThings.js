@@ -1,7 +1,6 @@
 import Settings from '../../utils/config';
 register("chat", (event) => {
     let message = ChatLib.getChatMessage(event, true);
-    console.log(message)
     if (Settings.hideMysteryBoxMessages && message.includes("&b✦") && message.includes("&r&7found a &r") && message.includes("&r&7!&r") && !message.includes(Player.getName())) {
         event.setCanceled(true);
         return;
