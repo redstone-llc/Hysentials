@@ -17,7 +17,6 @@ function sendChatMessage(message, displayName) {
 
 ws.onMessage = message => {
     const json = JSON.parse(message.toString())
-    console.log(message.toString())
 
     if (json.success && json.authenticated) {
         ChatLib.chat(`§8${Settings.chatPrefix} §2Logged in successfully!`)
