@@ -101,7 +101,8 @@ register('guiMouseClick', (x, y, mouseButton) => {
 				World.playSound('random.click', 1, 1)
 				inputUpdate();
 			} catch (e) {
-				console.log(e)
+				console.log('The following error is brought to you by Blockworks Studios^tm')
+				return e
 			}
 			return;
 		}

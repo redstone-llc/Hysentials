@@ -6,12 +6,19 @@ import { @Vigilant @SliderProperty @SwitchProperty @NumberProperty @TextProperty
 		const categories = ["General", "Guild", "QOL"];
 
 		return categories.indexOf(a.name) - categories.indexOf(b.name);
-	},
+	}
+
+	/*
+	
 	getSubcategoryComparator: () => (a, b) => {
 		const subcategories = ["General", "Player Count Chat", "Guild", "QOL", "Chat Swapper"];
 
 		return subcategories.indexOf(a.name) - subcategories.indexOf(b.name);
 	}
+	
+	Usage of this feature will cause a crash. 
+	
+	*/
 })
 class Settings {
 
