@@ -1,7 +1,7 @@
 import Settings from '../utils/config';
 
 let cen1 = ChatLib.getCenteredText("&6Hysentials Commands (1/1)")
-let cem2 = ChatLib.getCenteredText('&7Basic Hysentials Commands')
+let cen2 = ChatLib.getCenteredText('&7Basic Hysentials Commands')
 
 let hysentialsCommand = register("command", ...args => {
     let command;

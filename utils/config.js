@@ -7,18 +7,6 @@ import { @Vigilant @SliderProperty @SwitchProperty @NumberProperty @TextProperty
 
 		return categories.indexOf(a.name) - categories.indexOf(b.name);
 	}
-
-	/*
-	
-	getSubcategoryComparator: () => (a, b) => {
-		const subcategories = ["General", "Player Count Chat", "Guild", "QOL", "Chat Swapper"];
-
-		return subcategories.indexOf(a.name) - subcategories.indexOf(b.name);
-	}
-	
-	Usage of this feature will cause a crash. 
-	
-	*/
 })
 class Settings {
 
@@ -30,8 +18,15 @@ class Settings {
 		category: "General",
 		subcategory: "General",
 	})
-	chatPrefix = "&f[&6Hysentials&f]";
+	chatPrefix = "&b[HYSENTIALS]";
 
+	@SwitchProperty({
+		name: "Global Chat Enabled",
+		description: "",
+		category: "General",
+		subcategory: "General",
+	})
+	globalChatEnabled = true;
 
 	// Chat
 
@@ -43,7 +38,6 @@ class Settings {
 	})
 	playerCountChat = false;
 	
-
 	@SwitchProperty({
 		name: "Leave Player Count Chat",
 		description: "Put the player count before the player name in game leave messages. For best results, make sure to have player visibility enabled. Results may not be exact.",

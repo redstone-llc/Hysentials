@@ -1,18 +1,33 @@
-/// <reference types="../../../CTAutocomplete" />
-/// <reference lib="es2015" />
-
-//some of this code is taken from forks IRC module
-import Settings from "../../utils/config";
 import { isOnHypixel } from "../../utils/extra";
 import { getSocket, getServerId } from "../../websocket/socket";
+import Settings from "../../utils/config";
+
+/*
+@Name("Global Chat")
+A feature that allows you to chat with other players who are using the same module
+and are on Hypixel. It uses a websocket connection to communicate with the server.
+This feature is still in beta and may not work properly.
+
+Heavily inspired by Fork's IRC module.
+@Author(s): @Sin_ender
+*/
+
+/*
+TODO List:
+- Add clint side checks to prevent abuse, these will also be on the server
+*/
 
 let isInGlobalChat = false
 let command = register("command", ...args => {
     let command;
     let chats = ["all", "global", "party", "guild", "officer", "skyblock-coop"]
     let alias = ["a", "gl", "p", "g", "o", "coop"]
+    if (!Settings.globalChatEnabled) {
+        chats.splice(1, 1)
+        alias.splice(1, 1)
+    }
     if (!isOnHypixel()) {
-        ChatLib.chat("&cYou are not in a Hypixel server!")
+        ChatLib.chat(`${Settings.chatPrefix} &cYou are not in a Hypixel server!`)
         return;
     }
     try {
@@ -20,11 +35,7 @@ let command = register("command", ...args => {
     } catch (e) {
         command = ['', 1]
     }
-    if (command == "global" || command == "gl") {
-        if (!isOnHypixel()) {
-            ChatLib.chat("&cYou are not in a Hypixel server!")
-            return;
-        }
+    if (command == "global" || command == "gl" && Settings.globalChatEnabled) {
         if (isInGlobalChat) {
             ChatLib.chat("&cYou're already in this channel!")
         } else {
@@ -42,6 +53,7 @@ let command = register("command", ...args => {
 })
 command.setTabCompletions((args) => {
     if (args.length === 1) {
+        if (!Settings.globalChatEnabled) return ["all", "party", "guild", "officer", "skyblock-coop"]
         return ["all", "global", "party", "guild", "officer", "skyblock-coop"]
     }
     return []
@@ -71,9 +83,19 @@ register("messageSent", (message, event) => {
     }
 })
 
+
+
 register("command", ...args => {
     if (!isOnHypixel()) {
-        ChatLib.chat("&cYou are not in a Hypixel server!")
+        ChatLib.chat(`${Settings.chatPrefix} &cYou are not in a Hypixel server!`)
+        return;
+    }
+    if (!Settings.globalChatEnabled) {
+        ChatLib.chat(`${Settings.chatPrefix} &cGlobal chat is disabled!`)
+        return;
+    }
+    if (args.length == 0) {
+        ChatLib.chat("&cInvalid usage! '/globalchat <message>'")
         return;
     }
     let message = args.join(" ")

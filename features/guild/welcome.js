@@ -1,4 +1,6 @@
 import Settings from '../../utils/config';
+
+/**
 register("chat", (event) => {
     let message = ChatLib.getChatMessage(event, false);
     if (message.includes("joined the guild!")) {
@@ -7,3 +9,5 @@ register("chat", (event) => {
         }
     }
 })
+This has been disabled due to the fact that it is a macro.
+*/

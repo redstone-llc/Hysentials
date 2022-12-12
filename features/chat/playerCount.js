@@ -1,4 +1,11 @@
 import Settings from '../../utils/config';
+/** 
+@Name("Player Count")
+Displays the player count in chat when a player joins or leaves the lobby.
+Should probably be redone, this is slightly messy.
+
+@Author(s): @Sin_ender
+*/
 register("chat", (event) => {
     let message = ChatLib.getChatMessage(event, true)
     if (message.includes("&6slid into the lobby!&r") && Settings.removeLobbyStatuses) {

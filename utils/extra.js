@@ -1,4 +1,4 @@
-//hypixel line separat
+//hypixel line separator
 let separator = "-----------------------------------------------------";
 
 let onHypixel = false;

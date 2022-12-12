@@ -1,5 +1,12 @@
 import Settings from '../../utils/config';
 let switchedChannel
+/*
+@Name("Chat Swapper")
+Automatically switches to a different chat channel when you leave a party.
+This can definitely be improved, but it works for now.
+
+@Author(s): @Sin_ender
+*/
 register("chat", (event) => {
     if (!Settings.chatSwapperEnabled) return
     let message = ChatLib.getChatMessage(event, true);

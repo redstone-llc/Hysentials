@@ -11,6 +11,14 @@ const C10PacketCreativeInventoryAction = Java.type('net.minecraft.network.play.c
 const slotId = C10PacketCreativeInventoryAction.class.getDeclaredField("field_149629_a");
 slotId.setAccessible(true);
 
+/*
+@Name("setTexture command")
+Allows you to set the texture of the item that is in your hand.
+Needs the neighbor pack to show the textures.
+
+@Author(s) Arisings, Sin_ender
+*/
+
 let border = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 18, 27, 36, 45, 17, 26, 35, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53]
 
 let guiChest;

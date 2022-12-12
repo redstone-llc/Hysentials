@@ -1,6 +1,7 @@
 import { Input, Button } from './GuiBuilder';
 import {searchItems, getSearch} from '../commands/setTexture';
 
+//this code is taken from housing editor, and modified to work with settexture
 const button = new Button(0, 0, 0, 20, 'Confirm');
 
 const input = new Input(0, 0, 0, 18);

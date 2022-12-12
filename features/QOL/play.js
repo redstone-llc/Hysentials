@@ -1,4 +1,11 @@
 import Settings from '../../utils/config';
+/*
+@Name("Play Command")
+Makes it so you dont have to do /lobby before doing /play
+Also adds tab completions for /play
+
+@Author(s): @Sin_ender
+*/
 if (Settings.playAutocomplete) {
     let playCommand = register("command", ...args => {
         if (inLimbo) {
