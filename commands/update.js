@@ -36,7 +36,7 @@ Settings.registerListener("Developer Versions", (value) => {
 
 function checkForUpdate(dev) {
     if (dev) {
-        axios.get("https://api.github.com/repos/blockworks-studio/Hysentials/tree/Auto-Update/commits", {
+        axios.get("https://api.github.com/repos/blockworks-studio/Hysentials/commits", {
             headers: { "User-Agent": "Mozilla/5.0 (ChatTriggers)" },
             parseBody: true,
         }).then(response => {
@@ -47,7 +47,7 @@ function checkForUpdate(dev) {
                 delayChatMessage(`${Settings.chatPrefix} &aLatest Version: &6${latestCommit}`, 500)
                 delayChatMessage(`${Settings.chatPrefix} &aDownloading update...`, 1000)
                 FileUtilities.urlToFile(
-                    `https://github.com/blockworks-studio/Hysentials/tree/Auto-Update/archive/${latestCommit}.zip`,
+                    `https://github.com/blockworks-studio/Hysentials/archive/${latestCommit}.zip`,
                     `Hysentials-${latestCommit}.zip`,
                     10000,
                     10000
