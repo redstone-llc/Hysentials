@@ -104,4 +104,4 @@ register("command", ...args => {
     displayName = displayName.substring(0, displayName.indexOf(Player.getName()) + Player.getName().length)
     displayName = Player.getDisplayName().getText().substring(0, 2) + displayName
     getSocket().send(JSON.stringify({ method: "chat", username: Player.getName(), displayName: displayName, server: false, message: message, key: getServerId() }))
-}).setName("globalchat").setAliases("glchat", "glc")
+}).setName("globalchat", true).setAliases("glchat", "glc")
