@@ -20,3 +20,9 @@ export function isOnHypixel() {
 export function getSeparator() {
     return separator;
 }
+
+export function delayChatMessage(message, delay) {
+    setTimeout(() => {
+        ChatLib.chat(message);
+    }, delay);
+}

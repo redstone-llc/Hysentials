@@ -1,7 +1,10 @@
 // config.js
 import { @Vigilant @SliderProperty @SwitchProperty @NumberProperty @TextProperty @ButtonProperty @SliderProperty @CheckboxProperty } from 'Vigilance';
+import axios from 'axios';
 
-@Vigilant("Hysentials", `Hysentials 1.5-beta`, {
+let version = "1.5-beta";
+
+@Vigilant("Hysentials", `Hysentials ` + version, {
 	getCategoryComparator: () => (a, b) => {
 		const categories = ["General", "Guild", "QOL"];
 
@@ -11,6 +14,25 @@ import { @Vigilant @SliderProperty @SwitchProperty @NumberProperty @TextProperty
 class Settings {
 
 	// General
+
+	@ButtonProperty({
+        name: "Version: " + version,
+        description: "print some cool stuff :)",
+        category: "General",
+        subcategory: "General",
+        placeholder: "Update"
+    })
+    myButtonAction() {
+        console.log("wow i have a button?!?");
+    }
+
+	@SwitchProperty({
+		name: "Developer Versions",
+		description: "Automatically check for updates from github, these may not be as stable as the release version.",
+		category: "General",
+		subcategory: "General",
+	})
+	devVersion = false;
 
 	@TextProperty({
 		name: "Chat Prefix",
@@ -22,7 +44,7 @@ class Settings {
 
 	@SwitchProperty({
 		name: "Global Chat Enabled",
-		description: "",
+		description: "Enable global chat. This will allow you to chat with other players who are using Hysentials.",
 		category: "General",
 		subcategory: "General",
 	})
@@ -37,7 +59,7 @@ class Settings {
 		subcategory: "Player Count Chat",
 	})
 	playerCountChat = false;
-	
+
 	@SwitchProperty({
 		name: "Leave Player Count Chat",
 		description: "Put the player count before the player name in game leave messages. For best results, make sure to have player visibility enabled. Results may not be exact.",
@@ -165,7 +187,7 @@ class Settings {
 		subcategory: "Chat Swapper",
 	})
 	chatSwapperEnabled = true;
-	
+
 
 	@TextProperty({
 		name: "Chat Swapper Channel",
@@ -183,8 +205,8 @@ class Settings {
 		subcategory: "Chat Swapper",
 	})
 	hideSwapMessage = true;
-	
-	
+
+
 	constructor() {
 		this.initialize(this);
 		this.setCategoryDescription("General", "&aGeneral settings for Hysentials")
