@@ -43,9 +43,9 @@ export default class FileUtilities {
           Files.walk(p).forEach(file => {
             const f = q.resolve(p.relativize(file));
             if (replace === true) {
-              Files.copy(file, f, StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.ATOMIC_MOVE);
+              Files.move(file, f, StandardCopyOption.REPLACE_EXISTING);
             } else {
-              Files.copy(file, f);
+              Files.move(file, f);
             }
           });
         }).start();

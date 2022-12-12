@@ -10,7 +10,12 @@ register("command", ...args => {
     } catch (e) {
         command = ['', 1]
     }
-})
+    if (command == "dev") {
+        delayChatMessage(`${Settings.chatPrefix} &aChecking for updates...`, 500)
+        delayChatMessage(`${Settings.chatPrefix} &aYou are currently on version &6${Settings.version}&a!`, 1000)
+        checkForUpdate(true)
+    }
+}).setName("update")
 
 Settings.registerListener("Developer Versions", (value) => {
     Client.currentGui.close()
@@ -22,8 +27,8 @@ Settings.registerListener("Developer Versions", (value) => {
         checkForUpdate(true)
     } else {
         ChatLib.chat(`${Settings.chatPrefix} &cDeveloper Versions Disabled!`)
-        delayChatMessage(`${Settings.chatPrefix} &aYou are currently on version &6${Settings.version}&a!`)
-        delayChatMessage(`${Settings.chatPrefix} &aRolling back to the latest stable version...`)
+        delayChatMessage(`${Settings.chatPrefix} &aYou are currently on version &6${Settings.version}&a!`, 500)
+        delayChatMessage(`${Settings.chatPrefix} &aRolling back to the latest stable version...`, 1000)
         checkForUpdate(false)
     }
 })
@@ -52,8 +57,6 @@ function checkForUpdate(dev) {
                         FileLib.unzip(file, "./config/ChatTriggers/modules")
                         FileUtilities.copyDirectory("./config/ChatTriggers/modules/Hysentials-" + latestCommit, "./config/ChatTriggers/modules/Hysentials", true)
                         delayChatMessage(`${Settings.chatPrefix} &aUpdate installed!`, 10)
-                        
-                        
                     }
                 })
             }
