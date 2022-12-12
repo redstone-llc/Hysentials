@@ -3,7 +3,7 @@
   "creator": "Sin_ender",
   "description": "A quality of life mod for Hypixel and Hypixel Housing, includes features from Neighborhood Pack and more! Brought to you by Blockworks Studio!",
   "entry": "index.js",
-  "version": "1.5.6",
+  "version": "1.5.7",
   "requires": ["Vigilance", "axios", "Websocket", "PromiseV2"],
   "$schema": "../CTAutoComplete/schema.json"
 }
