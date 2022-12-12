@@ -10,7 +10,7 @@ register("command", ...args => {
     } catch (e) {
         command = ['', 1]
     }
-})
+}).setName("update")
 
 Settings.registerListener("Developer Versions", (value) => {
     Client.currentGui.close()
