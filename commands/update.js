@@ -49,8 +49,8 @@ function checkForUpdate(dev) {
                     if (file.exists()) {
                         delayChatMessage(`${Settings.chatPrefix} &aUpdate downloaded!`, 10)
                         delayChatMessage(`${Settings.chatPrefix} &aInstalling update...`, 500)
-                        FileLib.unzip(file, "./config/ChatTriggers/modules/Hysentials")
-                        FileLib
+                        FileLib.unzip(file, "./config/ChatTriggers/modules")
+                        FileUtilities.copyDirectory("./config/ChatTriggers/modules/Hysentials-" + latestCommit, "./config/ChatTriggers/modules/Hysentials", true)
                         delayChatMessage(`${Settings.chatPrefix} &aUpdate installed!`, 10)
                         
                         
