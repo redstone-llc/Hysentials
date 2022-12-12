@@ -24,6 +24,7 @@ function createSocket(timedOut) {
     }
 
     ws.onMessage = message => {
+        if (closed) return;
         const json = JSON.parse(message.toString()) //Converts the message to a JSON object
 
         if (json.success && json.authenticated) { //The server sends a success message if the user is authenticated
@@ -47,7 +48,11 @@ function createSocket(timedOut) {
     }
 
     ws.onClose = () => {
-        if (closed) return; //If the user leaves the game or reloads the script, don't try to reconnect
+        if (closed) {
+            closed = false
+            ws = null
+            return;
+         } //If the user leaves the game or reloads the script, don't try to reconnect
         if (timedOut) { //If the user is already trying to reconnect, don't spam the chat and don't try to reconnect again
             ChatLib.chat(`${Settings.chatPrefix} §cFailed to reconnect to the server. Some features may not work.`)
             return
@@ -67,8 +72,8 @@ socket = createSocket(false)
 
 //Closes the websocket connection when the user leaves the game or reloads the script
 register("gameUnload", () => {
-    ws.close()
-    ws = null
+    socket.close()
+    socket = null
     closed = true
 })
 
