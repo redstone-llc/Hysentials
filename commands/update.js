@@ -15,6 +15,7 @@ register("command", ...args => {
         delayChatMessage(`${Settings.chatPrefix} &aChecking for updates...`, 500)
         delayChatMessage(`${Settings.chatPrefix} &aYou are currently on version &6${version}&a!`, 1000)
         checkForUpdate(true)
+        return;
     }
 }).setName("update")
 

@@ -1,4 +1,5 @@
 import Settings from '../utils/config';
+import { version } from '../utils/config';
 
 let cen1 = ChatLib.getCenteredText("&6Hysentials Commands (1/1)")
 let cen2 = ChatLib.getCenteredText('&7Basic Hysentials Commands')
@@ -39,6 +40,10 @@ let hysentialsCommand = register("command", ...args => {
     if (command == "online") {
         ChatLib.chat(`${Settings.chatPrefix} &cThis feature is coming soon!`)
         return;
+    }
+
+    if (command == "version") {
+        ChatLib.chat(`${Settings.chatPrefix} &aHysentials version is currently ${version}!`)
     }
 
     ChatLib.chat(`${Settings.chatPrefix} &cInvalid Command! Type &6/hysentials help &cfor a list of commands.`)
