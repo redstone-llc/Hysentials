@@ -35,7 +35,7 @@ Settings.registerListener("Developer Versions", (value) => {
     }
 })
 
-async function checkForUpdate(dev) {
+function checkForUpdate(dev) {
     if (dev) {
         axios.get("https://api.github.com/repos/blockworks-studio/Hysentials/commits", {
             headers: { "User-Agent": "Mozilla/5.0 (ChatTriggers)" },
@@ -52,7 +52,7 @@ async function checkForUpdate(dev) {
                     `Hysentials-${latestCommit}.zip`,
                     10000,
                     10000
-                ).then(async file => {
+                ).then(file => {
                     if (file.exists()) {
                         delayChatMessage(`${Settings.chatPrefix} &aUpdate downloaded!`, 1500)
                         delayChatMessage(`${Settings.chatPrefix} &aInstalling update...`, 2000)
