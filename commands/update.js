@@ -25,7 +25,6 @@ Settings.registerListener("Developer Versions", (value) => {
     if (value) {
         ChatLib.chat(`${Settings.chatPrefix} &aDeveloper Versions Enabled!`)
         delayChatMessage(`${Settings.chatPrefix} &aChecking for updates...`, 500)
-        delayChatMessage(`${Settings.chatPrefix} &aYou are currently on version &6${version}&a!`, 1000)
         checkForUpdate(true)
     } else {
         ChatLib.chat(`${Settings.chatPrefix} &cDeveloper Versions Disabled!`)
@@ -43,10 +42,10 @@ function checkForUpdate(dev) {
         }).then(response => {
             let latestCommit = response.data[0].sha
             if (latestCommit != version) {
-                delayChatMessage(`${Settings.chatPrefix} &aThere is an update available!`, 10)
-                delayChatMessage(`${Settings.chatPrefix} &aCurrent Version: &6${version}`, 500)
-                delayChatMessage(`${Settings.chatPrefix} &aLatest Version: &6${latestCommit}`, 500)
-                delayChatMessage(`${Settings.chatPrefix} &aDownloading update...`, 1000)
+                delayChatMessage(`${Settings.chatPrefix} &aThere is an update available!`, 1000)
+                delayChatMessage(`${Settings.chatPrefix} &aCurrent Version: &6${version}`, 1500)
+                delayChatMessage(`${Settings.chatPrefix} &aLatest Version: &6${latestCommit}`, 1500)
+                delayChatMessage(`${Settings.chatPrefix} &aDownloading update...`, 2000)
                 FileUtilities.urlToFile(
                     `https://github.com/blockworks-studio/Hysentials/archive/${latestCommit}.zip`,
                     `Hysentials-${latestCommit}.zip`,
@@ -54,14 +53,16 @@ function checkForUpdate(dev) {
                     10000
                 ).then(file => {
                     if (file.exists()) {
-                        delayChatMessage(`${Settings.chatPrefix} &aUpdate downloaded!`, 1500)
-                        delayChatMessage(`${Settings.chatPrefix} &aInstalling update...`, 2000)
+                        delayChatMessage(`${Settings.chatPrefix} &aUpdate downloaded!`, 2500)
+                        delayChatMessage(`${Settings.chatPrefix} &aInstalling update...`, 3000)
                         FileLib.unzip(file, "./config/ChatTriggers/modules")
-                        FileUtilities.clearDirectory(`./config/ChatTriggers/modules/Hysentials`, true)
-                        FileUtilities.clearDirectory(`./config/ChatTriggers/modules/Hysentials`, false)
-                        FileUtilities.deleteDirectory(`./config/ChatTriggers/modules/Hysentials`)
-                        FileUtilities.renameDirectory(`./config/ChatTriggers/modules/Hysentials-${latestCommit}`, "Hysentials")
-                        delayChatMessage(`${Settings.chatPrefix} &aUpdate installed!`, 2500)
+                        FileUtilities.clearDirectory(`./config/ChatTriggers/modules/Hysentials`, true).then(() => {
+                            FileUtilities.clearDirectory(`./config/ChatTriggers/modules/Hysentials`, false).then(() => {
+                                FileUtilities.deleteDirectory(`./config/ChatTriggers/modules/Hysentials`)
+                                FileUtilities.renameDirectory(`./config/ChatTriggers/modules/Hysentials-${latestCommit}`, "Hysentials")
+                                delayChatMessage(`${Settings.chatPrefix} &aUpdate installed!`, 250)
+                            })
+                        })
                     }
                 })
             }

@@ -64,27 +64,28 @@ export default class FileUtilities {
   }
 
   static deleteDirectory(target) {
-    new Thread(() => {
-      if (new File(target).isDirectory()) {
-        new File(target).delete();
-      }
-    }).start();
+    if (new File(target).isDirectory()) {
+      new File(target).delete();
+    }
   }
-  
+
   static clearDirectory(target, onlyFiles) {
-    new Thread(() => {
-      const f = new File(target)
-      f.listFiles().forEach(file => {
-        if (file.isDirectory()) {
-          if (onlyFiles) {
-            FileUtilities.clearDirectory(file, true)
+    return new Promise((resolve, reject) => {
+      new Thread(() => {
+        const f = new File(target)
+        f.listFiles().forEach(file => {
+          if (file.isDirectory()) {
+            if (onlyFiles) {
+              FileUtilities.clearDirectory(file, true)
+            } else {
+              FileUtilities.deleteDirectory(file)
+            }
           } else {
-            FileUtilities.deleteDirectory(file)
+            file.delete();
           }
-        } else {
-          file.delete();
-        }
-      });
-    }).start();
+        });
+        resolve();
+      }).start();
+    });
   }
 }
