@@ -45,7 +45,7 @@ function checkForUpdate(dev) {
                 delayChatMessage(`${Settings.chatPrefix} &aThere is an update available!`, 1000)
                 delayChatMessage(`${Settings.chatPrefix} &aCurrent Version: &6${version}`, 1500)
                 delayChatMessage(`${Settings.chatPrefix} &aLatest Version: &6${latestCommit}`, 1500)
-                delayChatMessage(`${Settings.chatPrefix} &aDownloading update...`, 2000)
+                delayChatMessage(`${Settings.chatPrefix} &aDownloading update...`, 1500)
                 FileUtilities.urlToFile(
                     `https://github.com/blockworks-studio/Hysentials/archive/${latestCommit}.zip`,
                     `Hysentials-${latestCommit}.zip`,
@@ -53,8 +53,8 @@ function checkForUpdate(dev) {
                     10000
                 ).then(file => {
                     if (file.exists()) {
-                        delayChatMessage(`${Settings.chatPrefix} &aUpdate downloaded!`, 2500)
-                        delayChatMessage(`${Settings.chatPrefix} &aInstalling update...`, 3000)
+                        delayChatMessage(`${Settings.chatPrefix} &aUpdate downloaded!`, 1500)
+                        delayChatMessage(`${Settings.chatPrefix} &aInstalling update...`, 1500)
                         FileLib.unzip(file, "./config/ChatTriggers/modules")
                         FileLib.deleteDirectory(`./config/ChatTriggers/modules/Hysentials`)
                         FileUtilities.renameDirectory(`./config/ChatTriggers/modules/Hysentials-${latestCommit}`, "Hysentials")
