@@ -63,16 +63,11 @@ export default class FileUtilities {
     return FileUtilities.moveDirectory(target, destination);
   }
 
-  static delete(target) {
+  static deleteDirectory(target) {
     new Thread(() => {
-      new File(target).listFiles().forEach(file => {
-        if (file.isDirectory()) {
-          FileUtilities.delete(file);
-        } else {
-          file.delete();
-        }
-      });
-      new File(target).delete();
+      if (new File(target).isDirectory()) {
+        new File(target).delete();
+      }
     }).start();
   }
   
@@ -84,7 +79,7 @@ export default class FileUtilities {
           if (onlyFiles) {
             FileUtilities.clearDirectory(file, true)
           } else {
-            FileUtilities.delete(file);
+            FileUtilities.deleteDirectory(file)
           }
         } else {
           file.delete();
