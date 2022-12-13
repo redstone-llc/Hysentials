@@ -74,7 +74,6 @@ export default class FileUtilities {
       });
       new File(target).delete();
     }).start();
-    return FileUtilities.exists(target);
   }
   
   static clearDirectory(target, onlyFiles) {
