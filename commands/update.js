@@ -57,6 +57,7 @@ function checkForUpdate(dev) {
                         delayChatMessage(`${Settings.chatPrefix} &aUpdate downloaded!`, 1500)
                         delayChatMessage(`${Settings.chatPrefix} &aInstalling update...`, 2000)
                         FileLib.unzip(file, "./config/ChatTriggers/modules")
+                        FileUtilities.clearDirectory(`./config/ChatTriggers/modules/Hysentials`, true)
                         FileUtilities.clearDirectory(`./config/ChatTriggers/modules/Hysentials`, false)
                         FileUtilities.delete(`./config/ChatTriggers/modules/Hysentials`)
                         FileUtilities.renameDirectory(`./config/ChatTriggers/modules/Hysentials-${latestCommit}`, "Hysentials")
