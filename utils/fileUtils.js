@@ -34,7 +34,7 @@ export default class FileUtilities {
     });
   }
 
-  static copyDirectory(target, destination, replace) {
+  static async copyDirectory(target, destination, replace) {
     new Thread(() => {
       const d = new File(destination);
       d.getParentFile().mkdirs();
@@ -51,14 +51,14 @@ export default class FileUtilities {
     }).start();
   }
 
-  static moveDirectory(target, destination) {
+  static async moveDirectory(target, destination) {
     const f = new File(target);
     const d = new File(destination);
     d.getParentFile().mkdirs();
     return f.renameTo(d);
   }
 
-  static renameDirectory(target, name) {
+  static async renameDirectory(target, name) {
     const destination = new File(target).getParent() + "/" + name;
     return FileUtilities.moveDirectory(target, destination);
   }

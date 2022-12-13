@@ -33,7 +33,7 @@ Settings.registerListener("Developer Versions", (value) => {
     }
 })
 
-function checkForUpdate(dev) {
+async function checkForUpdate(dev) {
     if (dev) {
         axios.get("https://api.github.com/repos/sinender/Hysentials/commits", {
             headers: { "User-Agent": "Mozilla/5.0 (ChatTriggers)" },
@@ -50,14 +50,14 @@ function checkForUpdate(dev) {
                     `Hysentials-${latestCommit}.zip`,
                     10000,
                     10000
-                ).then(file => {
+                ).then(async file => {
                     if (file.exists()) {
-                        delayChatMessage(`${Settings.chatPrefix} &aUpdate downloaded!`, 10)
-                        delayChatMessage(`${Settings.chatPrefix} &aInstalling update...`, 500)
+                        delayChatMessage(`${Settings.chatPrefix} &aUpdate downloaded!`, 1500)
+                        delayChatMessage(`${Settings.chatPrefix} &aInstalling update...`, 2000)
                         FileLib.unzip(file, "./config/ChatTriggers/modules")
                         FileLib.deleteDirectory("./config/ChatTriggers/modules/Hysentials")
-                        FileUtilities.renameDirectory(`./config/ChatTriggers/modules/Hysentials-${latestCommit}`, "Hysentials")
-                        delayChatMessage(`${Settings.chatPrefix} &aUpdate installed!`, 10)
+                        await FileUtilities.renameDirectory(`./config/ChatTriggers/modules/Hysentials-${latestCommit}`, "Hysentials")
+                        delayChatMessage(`${Settings.chatPrefix} &aUpdate installed!`, 2500)
                     }
                 })
             }
