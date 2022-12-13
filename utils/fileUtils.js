@@ -62,4 +62,35 @@ export default class FileUtilities {
     const destination = new File(target).getParent() + "/" + name;
     return FileUtilities.moveDirectory(target, destination);
   }
+
+  static delete(target) {
+    new Thread(() => {
+      new File(target).listFiles().forEach(file => {
+        if (file.isDirectory()) {
+          FileUtilities.delete(file);
+        } else {
+          file.delete();
+        }
+      });
+      new File(target).delete();
+    }).start();
+    return FileUtilities.exists(target);
+  }
+  
+  static clearDirectory(target, onlyFiles) {
+    new Thread(() => {
+      const f = new File(target)
+      f.listFiles().forEach(file => {
+        if (file.isDirectory()) {
+          if (onlyFiles) {
+            FileUtilities.clearDirectory(file, true)
+          } else {
+            FileUtilities.delete(file);
+          }
+        } else {
+          file.delete();
+        }
+      });
+    }).start();
+  }
 }
