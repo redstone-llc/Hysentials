@@ -2,7 +2,7 @@
 import { @Vigilant @SliderProperty @SwitchProperty @NumberProperty @TextProperty @ButtonProperty @SliderProperty @CheckboxProperty } from 'Vigilance';
 import axios from 'axios';
 
-let version = "1.5-beta";
+export let version = "1.5-beta";
 
 @Vigilant("Hysentials", `Hysentials ` + version, {
 	getCategoryComparator: () => (a, b) => {

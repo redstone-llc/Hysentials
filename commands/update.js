@@ -1,4 +1,5 @@
 import Settings from '../utils/config';
+import { version } from '../utils/config';
 import axios from 'axios';
 import FileUtilities from '../utils/fileUtils';
 import { delayChatMessage } from '../utils/extra';
@@ -12,7 +13,7 @@ register("command", ...args => {
     }
     if (command == "dev") {
         delayChatMessage(`${Settings.chatPrefix} &aChecking for updates...`, 500)
-        delayChatMessage(`${Settings.chatPrefix} &aYou are currently on version &6${Settings.version}&a!`, 1000)
+        delayChatMessage(`${Settings.chatPrefix} &aYou are currently on version &6${version}&a!`, 1000)
         checkForUpdate(true)
     }
 }).setName("update")
@@ -23,11 +24,11 @@ Settings.registerListener("Developer Versions", (value) => {
     if (value) {
         ChatLib.chat(`${Settings.chatPrefix} &aDeveloper Versions Enabled!`)
         delayChatMessage(`${Settings.chatPrefix} &aChecking for updates...`, 500)
-        delayChatMessage(`${Settings.chatPrefix} &aYou are currently on version &6${Settings.version}&a!`, 1000)
+        delayChatMessage(`${Settings.chatPrefix} &aYou are currently on version &6${version}&a!`, 1000)
         checkForUpdate(true)
     } else {
         ChatLib.chat(`${Settings.chatPrefix} &cDeveloper Versions Disabled!`)
-        delayChatMessage(`${Settings.chatPrefix} &aYou are currently on version &6${Settings.version}&a!`, 500)
+        delayChatMessage(`${Settings.chatPrefix} &aYou are currently on version &6${version}&a!`, 500)
         delayChatMessage(`${Settings.chatPrefix} &aRolling back to the latest stable version...`, 1000)
         checkForUpdate(false)
     }
@@ -40,9 +41,9 @@ async function checkForUpdate(dev) {
             parseBody: true,
         }).then(response => {
             let latestCommit = response.data[0].sha
-            if (latestCommit != Settings.version) {
+            if (latestCommit != version) {
                 delayChatMessage(`${Settings.chatPrefix} &aThere is an update available!`, 10)
-                delayChatMessage(`${Settings.chatPrefix} &aCurrent Version: &6${Settings.version}`, 500)
+                delayChatMessage(`${Settings.chatPrefix} &aCurrent Version: &6${version}`, 500)
                 delayChatMessage(`${Settings.chatPrefix} &aLatest Version: &6${latestCommit}`, 500)
                 delayChatMessage(`${Settings.chatPrefix} &aDownloading update...`, 1000)
                 FileUtilities.urlToFile(
