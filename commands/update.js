@@ -13,7 +13,7 @@ register("command", ...args => {
     }
     if (command == "dev") {
         delayChatMessage(`${Settings.chatPrefix} &aChecking for updates...`, 500)
-        delayChatMessage(`${Settings.chatPrefix} &aYou are currently on version &6${version}&a!`, 1000)
+        delayChatMessage(`${Settings.chatPrefix} &aYou are currently on version &6${Settings.hyVersion}&a!`, 1000)
         checkForUpdate(true)
         return;
     }
@@ -21,14 +21,13 @@ register("command", ...args => {
 
 Settings.registerListener("Developer Versions", (value) => {
     Client.currentGui.close()
-
     if (value) {
         ChatLib.chat(`${Settings.chatPrefix} &aDeveloper Versions Enabled!`)
         delayChatMessage(`${Settings.chatPrefix} &aChecking for updates...`, 500)
         checkForUpdate(true)
     } else {
         ChatLib.chat(`${Settings.chatPrefix} &cDeveloper Versions Disabled!`)
-        delayChatMessage(`${Settings.chatPrefix} &aYou are currently on version &6${version}&a!`, 500)
+        delayChatMessage(`${Settings.chatPrefix} &aYou are currently on version &6${Settings.hyVersion}&a!`, 500)
         delayChatMessage(`${Settings.chatPrefix} &aRolling back to the latest stable version...`, 1000)
         checkForUpdate(false)
     }
@@ -40,15 +39,16 @@ function checkForUpdate(dev) {
             headers: { "User-Agent": "Mozilla/5.0 (ChatTriggers)" },
             parseBody: true,
         }).then(response => {
-            let latestCommit = response.data[0].sha
-            if (latestCommit != version) {
+            let latestCommit = response.data[0].sha.substring(0, 7)
+            let newVersion = "dev-" + latestCommit
+            if (newVersion != Settings.hyVersion) {
                 delayChatMessage(`${Settings.chatPrefix} &aThere is an update available!`, 1000)
-                delayChatMessage(`${Settings.chatPrefix} &aCurrent Version: &6${version}`, 1500)
-                delayChatMessage(`${Settings.chatPrefix} &aLatest Version: &6${latestCommit}`, 1500)
+                delayChatMessage(`${Settings.chatPrefix} &aCurrent Version: &6${Settings.hyVersion}`, 1500)
+                delayChatMessage(`${Settings.chatPrefix} &aLatest Version: &6${newVersion}`, 1500)
                 delayChatMessage(`${Settings.chatPrefix} &aDownloading update...`, 1500)
                 FileUtilities.urlToFile(
-                    `https://github.com/blockworks-studio/Hysentials/archive/${latestCommit}.zip`,
-                    `Hysentials-${latestCommit}.zip`,
+                    `https://github.com/blockworks-studio/Hysentials/archive/${newVersion}.zip`,
+                    `Hysentials-${newVersion}.zip`,
                     10000,
                     10000
                 ).then(file => {
@@ -57,11 +57,14 @@ function checkForUpdate(dev) {
                         delayChatMessage(`${Settings.chatPrefix} &aInstalling update...`, 1500)
                         FileLib.unzip(file, "./config/ChatTriggers/modules")
                         FileLib.deleteDirectory(`./config/ChatTriggers/modules/Hysentials`)
-                        FileUtilities.renameDirectory(`./config/ChatTriggers/modules/Hysentials-${latestCommit}`, "Hysentials")
+                        FileUtilities.renameDirectory(`./config/ChatTriggers/modules/Hysentials-${newVersion}`, "Hysentials")
                         com.chattriggers.ctjs.Reference.loadCT()
                         delayChatMessage(`${Settings.chatPrefix} &aUpdate installed!`, 4000)
+                        Settings.hyVersion = newVersion
                     }
                 })
+            } else {
+                delayChatMessage(`${Settings.chatPrefix} &aYou are up to date!`, 1000)
             }
         })
     }

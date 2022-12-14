@@ -6,6 +6,7 @@ Gives a green icon to players who are using the hysentials module.
 This feature is still in beta and may not work properly.
 
 @Author(s): @Sin_ender
+@Deprecation: This feature has been moved to blockworksRanks.js and will be removed in a future update.
 */
 register('worldload', () => {
     setTimeout(() => {

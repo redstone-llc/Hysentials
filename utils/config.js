@@ -16,14 +16,14 @@ class Settings {
 	// General
 
 	@ButtonProperty({
-        name: "Version: " + version,
-        description: "print some cool stuff :)",
+        name: "Update Hysentials",
+        description: "Update Hysentials to the latest version.",
         category: "General",
         subcategory: "General",
         placeholder: "Update"
     })
     myButtonAction() {
-        console.log("wow i have a button?!?");
+		ChatLib.command(`update ${this.devVersion ? "dev" :"stable"}`)
     }
 
 	@SwitchProperty({
@@ -32,7 +32,7 @@ class Settings {
 		category: "General",
 		subcategory: "General",
 	})
-	devVersion = false;
+	devVersion = true;
 
 	@TextProperty({
 		name: "Chat Prefix",
@@ -206,6 +206,14 @@ class Settings {
 	})
 	hideSwapMessage = true;
 
+	@TextProperty({
+		name: "Version",
+		description: "The version of Hysentials you are using. Do not change this.",
+		category: "General",
+		subcategory: "General",
+	})
+	hyVersion = version
+
 
 	constructor() {
 		this.initialize(this);
@@ -214,6 +222,9 @@ class Settings {
 		this.setCategoryDescription("Guild", "&aCommands for guild related stuff")
 		this.setCategoryDescription("QOL", "&aQuality of life features")
 		this.setSubcategoryDescription("QOL", "Chat Swapper", "&aAutomatically change back to a selected channel when leaving a party.")
+		this.registerListener("Version", (value) => {
+			ChatLib.chat("&cI told you not to change this! Please make sure to update back to the latest version of Hysentials.")
+		})
 	}
 }
 

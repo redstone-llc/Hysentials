@@ -28,7 +28,7 @@ function createSocket(timedOut) {
         const json = JSON.parse(message.toString()) //Converts the message to a JSON object
 
         if (json.success && json.authenticated) { //The server sends a success message if the user is authenticated
-            ChatLib.chat(`§8${Settings.chatPrefix} §2Logged in successfully!`)
+            ChatLib.chat(`§8${Settings.chatPrefix} §aLogged in successfully!`)
             timedOut = false
         }
 

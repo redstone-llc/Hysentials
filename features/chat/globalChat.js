@@ -20,7 +20,7 @@ TODO List:
 let isInGlobalChat = false
 let command = register("command", ...args => {
     let command;
-    let chats = ["all", "global", "party", "guild", "officer", "skyblock-coop"]
+    let chats = ["All", "Global", "Party", "Guild", "Officer", "Skyblock-CoOp"]
     let alias = ["a", "gl", "p", "g", "o", "coop"]
     if (!Settings.globalChatEnabled) {
         chats.splice(1, 1)
@@ -42,7 +42,7 @@ let command = register("command", ...args => {
             isInGlobalChat = true
             ChatLib.chat("&aYou are now in the &6GLOBAL &achat!")
         }
-    } else if (!chats.includes(command) && !alias.includes(command)) {
+    } else if (!chats.find(c => c.toLowerCase().equals(command)) && !alias.includes(command)) {
         ChatLib.chat("&cInvalid Channel! Valid channels: " + chats.join(", "))
     } else {
         if (isInGlobalChat) {

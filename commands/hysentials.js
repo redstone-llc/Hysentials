@@ -43,7 +43,8 @@ let hysentialsCommand = register("command", ...args => {
     }
 
     if (command == "version") {
-        ChatLib.chat(`${Settings.chatPrefix} &aHysentials version is currently ${version}!`)
+        ChatLib.chat(`${Settings.chatPrefix} &aHysentials version is currently ${Settings.hyVersion}!`)
+        return;
     }
 
     ChatLib.chat(`${Settings.chatPrefix} &cInvalid Command! Type &6/hysentials help &cfor a list of commands.`)
