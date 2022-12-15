@@ -39,6 +39,7 @@ export default class FileUtilities {
     new Thread(() => {
       const d = new File(destination);
       d.getParentFile().mkdirs();
+      d.mkdirs();
       const p = new File(target).toPath();
       const q = new File(destination).toPath();
       Files.walk(p).forEach(file => {
