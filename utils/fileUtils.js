@@ -3,6 +3,7 @@ import { Promise } from 'PromiseV2';
 const Files = Java.type("java.nio.file.Files");
 const File = Java.type("java.io.File");
 const StandardCopyOption = Java.type("java.nio.file.StandardCopyOption");
+const Paths = Java.type("java.nio.file.Paths");
 
 export default class FileUtilities {
   /**
@@ -59,9 +60,8 @@ export default class FileUtilities {
   }
 
   static renameDirectory(target, name) {
-    const f = new File(target);
-    const d = new File(f.getParentFile(), name);
-    return f.renameTo(d);
+    const oldFile = Paths.get(target);
+    Files.move(oldFile, oldFile.resolveSibling(name));
   }
 
   static deleteDirectory(target) {
