@@ -32,15 +32,6 @@ function createSocket(timedOut) {
             timedOut = false
         }
 
-        //This is necessary for the server to know that the user is still connected
-        if (json.method == "heartbeat" && json.server) { 
-            if (json.status !== "still authenticated") {
-                ws.close()
-                return;
-            }
-            ws.send(JSON.stringify({ method: "heartbeat", username: Player.getName(), server: false }))
-        }
-
         //Global chat messages
         if (json.method == "chat" && json.message) {
             sendChatMessage(json.message, json.displayName)

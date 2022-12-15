@@ -47,8 +47,8 @@ function checkForUpdate(dev) {
                 delayChatMessage(`${Settings.chatPrefix} &aLatest Version: &6${newVersion}`, 1500)
                 delayChatMessage(`${Settings.chatPrefix} &aDownloading update...`, 1500)
                 FileUtilities.urlToFile(
-                    `https://github.com/blockworks-studio/Hysentials/archive/${newVersion}.zip`,
-                    `Hysentials-${newVersion}.zip`,
+                    `https://github.com/blockworks-studio/Hysentials/archive/${latestCommit}.zip`,
+                    `Hysentials-${latestCommit}.zip`,
                     10000,
                     10000
                 ).then(file => {
@@ -57,7 +57,7 @@ function checkForUpdate(dev) {
                         delayChatMessage(`${Settings.chatPrefix} &aInstalling update...`, 1500)
                         FileLib.unzip(file, "./config/ChatTriggers/modules")
                         FileLib.deleteDirectory(`./config/ChatTriggers/modules/Hysentials`)
-                        FileUtilities.renameDirectory(`./config/ChatTriggers/modules/Hysentials-${newVersion}`, "Hysentials")
+                        FileUtilities.renameDirectory(`./config/ChatTriggers/modules/Hysentials-${latestCommit}`, "Hysentials")
                         com.chattriggers.ctjs.Reference.loadCT()
                         delayChatMessage(`${Settings.chatPrefix} &aUpdate installed!`, 4000)
                         Settings.hyVersion = newVersion
