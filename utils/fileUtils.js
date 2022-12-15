@@ -60,8 +60,11 @@ export default class FileUtilities {
   }
 
   static renameDirectory(target, name) {
-    const oldFile = Paths.get(target);
-    Files.move(oldFile, oldFile.resolveSibling(name));
+    const f = new File(target);
+    const d = new File(f.getParentFile(), name);
+    d.mkdirs();
+    
+    Files.move(Paths.get(target), Paths.get(target).resolveSibling(name));
   }
 
   static deleteDirectory(target) {
