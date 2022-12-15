@@ -12,16 +12,8 @@ This feature is still in beta and may not work properly.
 */
 
 const UUID = Java.type("java.util.UUID");
-<<<<<<< Updated upstream
 register("worldload", () => {
     setTimeout(() => {
-=======
-
-let loadedUsers = new Set();
-register("worldload", () => {
-    setTimeout(() => {
-        loadedUsers = new Set();
->>>>>>> Stashed changes
         loadRanks()
     }, 250);
 })
