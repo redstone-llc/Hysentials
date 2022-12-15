@@ -59,11 +59,8 @@ export default class FileUtilities {
     return f.renameTo(d);
   }
 
-  static renameDirectory(target, name) {
-    const f = new File(target);
-    const d = new File(f.getParentFile(), name);
-    d.mkdirs();
-    return f.renameTo(d);
+  static renameDirectory(target, destination) {
+    Files.move(Paths.get(target), Paths.get(destination));
   }
 
   static deleteDirectory(target) {
