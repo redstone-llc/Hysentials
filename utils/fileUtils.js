@@ -9,6 +9,7 @@ const ZipInputStream = Java.type('java.util.zip.ZipInputStream');
 const FileInputStream = Java.type('java.io.FileInputStream');
 const BufferedOutputStream = Java.type('java.io.BufferedOutputStream');
 const Files = Java.type('java.nio.file.Files');
+const PrintStream = Java.type('java.io.PrintStream');
 
 
 export default class FileUtilities {
