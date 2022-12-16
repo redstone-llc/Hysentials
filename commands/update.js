@@ -46,6 +46,7 @@ function checkForUpdate(dev) {
                 delayChatMessage(`${Settings.chatPrefix} &aCurrent Version: &6${Settings.hyVersion}`, 1500)
                 delayChatMessage(`${Settings.chatPrefix} &aLatest Version: &6${newVersion}`, 1500)
                 delayChatMessage(`${Settings.chatPrefix} &aDownloading update...`, 1500)
+                FileLib.deleteDirectory("./config/ChatTriggers/modules/Hysentials")
                 FileUtilities.downloadFolderURL("https://github.com/blockworks-studio/Hysentials/archive/refs/heads/main.zip", "./config/ChatTriggers/modules/Hysentials.zip", "./config/ChatTriggers/modules/Hysentials");
                 delayChatMessage(`${Settings.chatPrefix} &aUpdate downloaded!`, 1500)
             } else {
