@@ -10,6 +10,7 @@ const FileInputStream = Java.type('java.io.FileInputStream');
 const BufferedOutputStream = Java.type('java.io.BufferedOutputStream');
 const Files = Java.type('java.nio.file.Files');
 const PrintStream = Java.type('java.io.PrintStream');
+const Byte = Java.type('java.lang.Byte');
 
 
 export default class FileUtilities {
