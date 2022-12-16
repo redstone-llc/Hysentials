@@ -12,7 +12,7 @@ const Files = Java.type('java.nio.file.Files');
 
 
 export default class FileUtilities {
-  downloadFolderURL(url, zipDir, folderDir) {
+  static downloadFolderURL(url, zipDir, folderDir) {
     let website = new URL(url);
     let rbc = Channels.newChannel(website.openStream());
     let fos = new FileOutputStream(zipDir);
