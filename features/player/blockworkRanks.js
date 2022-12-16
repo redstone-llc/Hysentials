@@ -64,11 +64,13 @@ function loadRanks() {
                     let oldPrefix = World.getPlayerByName(user).getDisplayName().getText().match(/\[(.*?)\] ?/)
                     let displayName = World.getPlayerByName(user).getDisplayName().getText()
                     let newdisplayname = ""
+                    console.log(displayName)
+                    if (displayName.startsWith("§a") || displayName.startsWith("§c") || displayName.startsWith("§k")) return;
+
                     if (displayName.startsWith("§7")) {
                         oldPrefix = `§7`
                     } else if (oldPrefix.length > 0) {
                         oldPrefix = oldPrefix[0]
-                        console.log(oldPrefix)
                         if (oldPrefix == "[ADMIN]" || oldPrefix == "[MOD]" || oldPrefix == "[§fCREATOR§3]") return
                     } else {
                         oldPrefix = ""
@@ -80,7 +82,6 @@ function loadRanks() {
                     }
                     let target = World.getPlayerByName(user);
                     if (target != null) {
-                        target.setTabDisplayName(new TextComponent(newdisplayname));
                         let team = Scoreboard.getScoreboard().func_96509_i(target.getName()) //get players team
                         let suffix = team.func_96663_f() //get players suffix
                         Scoreboard.getScoreboard().func_96524_g(target.getName()) //remove player from team

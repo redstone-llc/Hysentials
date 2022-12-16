@@ -12,6 +12,27 @@ const Files = Java.type('java.nio.file.Files');
 
 
 export default class FileUtilities {
+  static urlToFile(url, destination, connecttimeout, readtimeout) {
+    new Thread(() => {
+      const d = new File(destination);
+      d.getParentFile().mkdirs();
+      const connection = new URL(url).openConnection();
+      connection.setDoOutput(true);
+      connection.setConnectTimeout(connecttimeout);
+      connection.setReadTimeout(readtimeout);
+      const IS = connection.getInputStream();
+      const FilePS = new PrintStream(destination);
+      let buf = new Packages.java.lang.reflect.Array.newInstance(Byte.TYPE, 65536);
+      let len;
+      while ((len = IS.read(buf)) > 0) {
+        FilePS.write(buf, 0, len);
+      }
+      IS.close();
+      FilePS.close();
+    }).start();
+    return FileLib.read(destination);
+  }
+
   static downloadFolderURL(url, zipDir, folderDir) {
     let website = new URL(url);
     let rbc = Channels.newChannel(website.openStream());
