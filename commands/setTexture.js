@@ -59,7 +59,7 @@ const setTexture = register('command', (search) => {
     this.search = search
     openGUI()
 })
-setTexture.setAliases("st").setName('settexture', true);
+setTexture.setName('settexture', true).setAliases("st");
 
 function searchItems(search) {
     page = 0
