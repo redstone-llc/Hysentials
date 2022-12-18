@@ -36,7 +36,7 @@ let hysentialsCommand = register("command", ...args => {
         Settings.openGUI();
         return;
     }
-    
+
     if (command == "online") {
         ChatLib.chat(`${Settings.chatPrefix} &cThis feature is coming soon!`)
         return;
@@ -55,3 +55,8 @@ hysentialsCommand.setTabCompletions((args) => {
     if (args.length === 1) return ['help'];
     return [];
 })
+
+register("command", () => {
+    Settings.openGUI();
+    return;
+}).setName('config', true);

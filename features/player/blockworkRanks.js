@@ -36,51 +36,49 @@ function loadRanks() {
                 axios.get(apiURL + "rank", {
                     headers: { "User-Agent": "Mozilla/5.0 (ChatTriggers)" },
                     query: {
-                        username: user,
+                        uuid: World.getPlayerByName(user).getUUID().toString(),
                     },
                     parseBody: true,
                 }).then((rankResponse) => {
                     if (!rankResponse.data.success) return;
                     let rank = rankResponse.data.rank;
-                    let prefix = World.getPlayerByName(user).getDisplayName().getText().includes("§a◆") ? "" : "§a◆ "
+                    let prefix = indicator()
                     let char
+                    let oldPrefix = target.getTeam().getPrefix()
+                    let displayName = World.getPlayerByName(user).getDisplayName().getText()
+                    let target = World.getPlayerByName(user);
                     switch (rank) {
                         case "admin": {
                             prefix += "§c[ADMIN] "
                             char = `1`
+                            color = `§c`
                             break;
                         }
                         case "mod": {
                             prefix += "§2[MOD] "
                             char = `2`
+                            color = `§2`
                             break;
                         }
                         case "creator": {
                             prefix += "§3[§fCREATOR§3] "
                             char = `3`
+                            color = `§3`
+                            break;
+                        }
+                        case "default": {
+                            prefix += oldPrefix
+                            char = target.getTeam().getName()
+                            color = `§7`
                             break;
                         }
                     }
-                    let oldPrefix = World.getPlayerByName(user).getDisplayName().getText().match(/\[(.*?)\] ?/)
-                    let displayName = World.getPlayerByName(user).getDisplayName().getText()
-                    let newdisplayname = ""
-                    console.log(displayName)
-                    if (displayName.startsWith("§a") || displayName.startsWith("§c") || displayName.startsWith("§k")) return;
-
-                    if (displayName.startsWith("§7")) {
-                        oldPrefix = `§7`
-                    } else if (oldPrefix.length > 0) {
-                        oldPrefix = oldPrefix[0]
-                        if (oldPrefix == "[ADMIN]" || oldPrefix == "[MOD]" || oldPrefix == "[§fCREATOR§3]") return
-                    } else {
-                        oldPrefix = ""
+                    if (Number.isInteger(parseInt(ChatLib.removeFormatting(oldPrefix)))) {
+                        prefix = indicator() + oldPrefix + color
                     }
-                    if (oldPrefix == "") {
-                        newdisplayname = prefix + displayName
-                    } else {
-                        newdisplayname = World.getPlayerByName(user).getDisplayName().getText().replace(oldPrefix, prefix);
+                    if (oldPrefix.startsWith("§a") || oldPrefix.startsWith("§c") || oldPrefix.startsWith("§7§k")) {
+                        prefix = indicator() + oldPrefix
                     }
-                    let target = World.getPlayerByName(user);
                     if (target != null) {
                         let team = Scoreboard.getScoreboard().func_96509_i(target.getName()) //get players team
                         let suffix = team.func_96663_f() //get players suffix
@@ -94,4 +92,8 @@ function loadRanks() {
             }
         }
     })
+}
+
+function indicator () {
+    return World.getPlayerByName(user).getDisplayName().getText().includes("§a◆") ? "" : "§a◆ "
 }
